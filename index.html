@@ -1,5 +1,7 @@
 Ahoy!
 
+<script src="http://cdn.pubnub.com/pubnub-3.7.1.min.js"></script> 
+ 
 <script> function getQueryParams(qs) {
     qs = qs.split("+").join(" ");
 
@@ -13,7 +15,11 @@ Ahoy!
 
     return params;
 }
+     pubnub = PUBNUB.init({                                  
+         publish_key   : 'demo',
+         subscribe_key : 'demo'
+     });
 
 var query = getQueryParams(document.location.search);
-document.write(query);
+pubnub.publish({ channel: "pubnub-twilio", message: query});
 </script>
